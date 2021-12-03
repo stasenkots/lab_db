@@ -38,8 +38,8 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        viewModel.users.observe(this) { users ->
-            binding.usersTotalCount.text = getString(R.string.total_users_count, users.size)
+        viewModel.allUsersCount.observe(this) { usersCount ->
+            binding.usersTotalCount.text = getString(R.string.total_users_count, usersCount)
         }
 
         viewModel.filteredUsers.observe(this) { users ->
@@ -50,12 +50,6 @@ class MainActivity : AppCompatActivity() {
         binding.filter.doOnTextChanged { text, _, _, _ ->
             viewModel.filter.postValue(text.toString())
         }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        viewModel.setup()
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
